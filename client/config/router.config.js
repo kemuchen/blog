@@ -21,7 +21,7 @@ export default [
   {
     path: '/',
     component: '../layouts/BasicLayout',
-    // Routes: ['src/pages/Authorized'],
+    Routes: ['src/pages/Authorized'],
     routes: [
       // home
       { path: '/', redirect: '/home'},
@@ -33,110 +33,33 @@ export default [
       // blog
       {
         path: '/blog',
-        icon: 'form',
-        component: './Forms/AdvancedForm',
-      },
-      // www
-      {
-        path: '/website',
-        name: 'website',
-        routes: [
-          {
-            path: '/website/Java',
-            name: 'Java',
-            component: './List/TableList',
-          },
-          {
-            path: '/website/CSS3|HTML5',
-            name: 'css3',
-            component: './List/BasicList',
-          },
-          {
-            path: '/website/ant design',
-            name: 'ant design',
-            component: './List/CardList',
-          }
-        ],
+        name: 'blog',
+        component: './BlogDiary/BlogDiary',
       },
       {
         path: '/read',
         name: 'read',
-        component: './Profile/AdvancedProfile',
+        component: './Read/Read',
       },
       {
         name: 'about',
         path: '/about',
-        component: './Result/Success',
+        component: './About/About',
       },
       {
         name: 'timeline',
         path: '/timeline',
-        component: './Dashboard/Monitor',
+        component: './TimeAxle/TimeAxle',
       },
       {
         name: 'guid',
         path: '/guid',
-        component: './Dashboard/Workplace',
+        component: './Guid/Guid',
       },
       {
         name: 'message',
         path: '/message',
-        component: './NewPage/NewPage',
-      },
-      {
-        path: '/account',
-        routes: [
-          {
-            path: '/account/center',
-            name: 'center',
-            component: './Account/Center/Center',
-            routes: [
-              {
-                path: '/account/center',
-                redirect: '/account/center/articles',
-              },
-              {
-                path: '/account/center/articles',
-                component: './Account/Center/Articles',
-              },
-              {
-                path: '/account/center/applications',
-                component: './Account/Center/Applications',
-              },
-              {
-                path: '/account/center/projects',
-                component: './Account/Center/Projects',
-              },
-            ],
-          },
-          {
-            path: '/account/settings',
-            name: 'settings',
-            component: './Account/Settings/Info',
-            routes: [
-              {
-                path: '/account/settings',
-                redirect: '/account/settings/base',
-              },
-              {
-                path: '/account/settings/base',
-                component: './Account/Settings/BaseView',
-              },
-              {
-                path: '/account/settings/security',
-                component: './Account/Settings/SecurityView',
-              },
-              {
-                path: '/account/settings/binding',
-                component: './Account/Settings/BindingView',
-              },
-              {
-                path: '/account/settings/notification',
-                component: './Account/Settings/NotificationView',
-              },
-            ],
-          },
-        ],
+        component: './Message/Message',
       },
       {
         component: '404',

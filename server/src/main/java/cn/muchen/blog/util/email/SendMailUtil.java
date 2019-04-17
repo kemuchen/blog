@@ -16,8 +16,8 @@ import javax.mail.internet.MimeMultipart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.sun.mail.util.MailSSLSocketFactory;
-import cn.muchen.framework.util.Environment;
-import cn.muchen.framework.util.Util;
+import cn.muchen.blog.util.Environment;
+import cn.muchen.blog.util.Util;
 
 /**
  * 

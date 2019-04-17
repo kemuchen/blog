@@ -12,7 +12,7 @@ import org.apache.ibatis.type.JdbcType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.muchen.framework.util.Util;
+import cn.muchen.blog.util.Util;
 
 /**
  * 

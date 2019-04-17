@@ -2,6 +2,7 @@ package cn.muchen;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,9 +15,9 @@ import org.springframework.context.annotation.ComponentScan;
  * @date ：2018年9月5日 下午4:44:31
  *
  */
-@SpringBootApplication
+@EnableAutoConfiguration
 @MapperScan("cn.muchen.**.dao.mapper.**")
-@ComponentScan(basePackages = { "cn.muchen"})
+@ComponentScan("cn.muchen")
 @EnableCaching
 public class SpringBootBlogApplication {
 

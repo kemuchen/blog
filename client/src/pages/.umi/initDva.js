@@ -14,10 +14,9 @@ app.use(createLoading());
   app.use(plugin);
 });
 
-app.model({ namespace: 'global', ...(require('D:/Workspace/blog/ant-design/src/models/global.js').default) });
-app.model({ namespace: 'list', ...(require('D:/Workspace/blog/ant-design/src/models/list.js').default) });
-app.model({ namespace: 'login', ...(require('D:/Workspace/blog/ant-design/src/models/login.js').default) });
-app.model({ namespace: 'menu', ...(require('D:/Workspace/blog/ant-design/src/models/menu.js').default) });
-app.model({ namespace: 'project', ...(require('D:/Workspace/blog/ant-design/src/models/project.js').default) });
-app.model({ namespace: 'setting', ...(require('D:/Workspace/blog/ant-design/src/models/setting.js').default) });
-app.model({ namespace: 'user', ...(require('D:/Workspace/blog/ant-design/src/models/user.js').default) });
+app.model({ namespace: 'global', ...(require('D:/Java/workspace/GitHub/blog/client/src/models/global.js').default) });
+app.model({ namespace: 'login', ...(require('D:/Java/workspace/GitHub/blog/client/src/models/login.js').default) });
+app.model({ namespace: 'menu', ...(require('D:/Java/workspace/GitHub/blog/client/src/models/menu.js').default) });
+app.model({ namespace: 'project', ...(require('D:/Java/workspace/GitHub/blog/client/src/models/project.js').default) });
+app.model({ namespace: 'setting', ...(require('D:/Java/workspace/GitHub/blog/client/src/models/setting.js').default) });
+app.model({ namespace: 'user', ...(require('D:/Java/workspace/GitHub/blog/client/src/models/user.js').default) });

@@ -1,4 +1,4 @@
-package cn.muchen.framework.security.error;
+package cn.muchen.blog.security.error;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -63,7 +63,7 @@ public class ErrorPageInterceptor extends HandlerInterceptorAdapter {
     			PrintWriter out = response.getWriter();
     			Map<String, Object> rtnMap = new HashMap<>();
     			
-    			rtnMap.put("code", "-99");
+    			rtnMap.put("errorCode", response.getStatus());
     			rtnMap.put("message", errorMsgList.get(errorCodeList.indexOf(response.getStatus())));
     			
     			out.print(JSONObject.toJSONString(rtnMap));

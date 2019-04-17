@@ -1,12 +1,12 @@
 package cn.muchen.blog.web;
 
 
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +22,13 @@ public class TestController  {
     Logger logger = LoggerFactory.getLogger(TestController.class);
 
     @RequestMapping("/home")
-    public Map<String, Object> getHomeData(@RequestParam Integer currentPage) {
+    public Map<String, Object> getHomeData(@RequestBody String param) {
         logger.info("获取首页数据");
         List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+        logger.info(param);
+        Map<String, Object> inMap = JSONObject.parseObject(param);
 
+        Integer currentPage = (Integer) inMap.get("currentPage");
         for (int i = 0; i < PAGE_SIZE && (currentPage - 1) * PAGE_SIZE + i < TOTAL_COUNT; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("title", "标题" + ((currentPage - 1) * 3 + i + 1));

@@ -26,7 +26,7 @@ defaultAntd = defaultAntd.default || defaultAntd;
 const localeInfo = {
   'zh-CN': {
     messages: {
-      ...require('D:/Workspace/blog/ant-design/src/locales/zh-CN.js').default,
+      ...require('D:/Java/workspace/GitHub/blog/client/src/locales/zh-CN.js').default,
     },
     locale: 'zh-CN',
     antd: require('antd/lib/locale-provider/zh_CN'),

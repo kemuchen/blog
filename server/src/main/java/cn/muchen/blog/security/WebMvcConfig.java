@@ -1,11 +1,11 @@
-package cn.muchen.framework.security;
+package cn.muchen.blog.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import cn.muchen.framework.security.error.ErrorPageInterceptor;
+import cn.muchen.blog.security.error.ErrorPageInterceptor;
 
 /**
  * 

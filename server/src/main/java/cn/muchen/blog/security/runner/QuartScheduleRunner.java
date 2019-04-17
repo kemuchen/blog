@@ -1,8 +1,10 @@
-package cn.muchen.framework.security.runner;
+package cn.muchen.blog.security.runner;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import cn.muchen.blog.util.quartz.QuartzScheduler;
 import org.quartz.Job;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +14,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import cn.muchen.framework.dao.mapper.CommonMapper;
-import cn.muchen.framework.util.quartz.QuartzScheduler;
+import cn.muchen.blog.dao.mapper.CommonMapper;
 
 /**
  * 

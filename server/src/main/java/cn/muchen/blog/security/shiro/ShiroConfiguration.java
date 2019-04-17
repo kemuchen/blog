@@ -1,4 +1,4 @@
-package cn.muchen.framework.security.shiro;
+package cn.muchen.blog.security.shiro;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import cn.muchen.framework.service.inter.xtgl.RightService;
-import cn.muchen.framework.util.Util;
+import cn.muchen.blog.service.inter.xtgl.RightService;
+import cn.muchen.blog.util.Util;
 import org.apache.shiro.mgt.SecurityManager;
 
 /**

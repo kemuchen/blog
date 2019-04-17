@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from 'react';
 import GridContent from '@/components/PageHeaderWrapper/GridContent';
-import { Row, Col, Icon, Menu, Dropdown, Form, Carousel, Card, Tabs, List, Avatar } from 'antd';
+import { Row, Col, Icon, Menu, Dropdown, Form, Carousel, Card, Tabs, List, Avatar, Button } from 'antd';
 import { connect } from 'dva';
 import PageLoading from '@/components/PageLoading';
 import style from './Home.less';
@@ -19,7 +19,7 @@ const TabPane = Tabs.TabPane;
   home,
   loading: loading.effects['home/fetch'],
 }))
-class Home extends Component{
+class Home extends Component {
   componentDidMount(currentPage) {
     if (currentPage == undefined || currentPage == null) {
       var currentPage = 1
@@ -28,7 +28,7 @@ class Home extends Component{
     this.reqRef = requestAnimationFrame(() => {
       dispatch({
         type: 'home/fetch',
-        param: {'currentPage': currentPage}
+        param: { 'currentPage': currentPage }
       });
     });
   }
@@ -46,7 +46,15 @@ class Home extends Component{
       articleList,
       total
     } = home;
-    return(
+
+
+    const data = [
+      {type: 'home', color: '#ef5509'},
+      {type: 'weibo', color: '#FF991A'},
+      {type: 'qq', color: '#1296DB'},
+      {type: 'wechat', color: '#07AF12'},
+    ]
+    return (
       <GridContent>
         <Row gutter={18}>
           <Col xl={12} lg={12} md={12} sm={12} xs={12}>
@@ -57,19 +65,31 @@ class Home extends Component{
             </Carousel>
           </Col>
           <Col xl={6} lg={6} md={6} sm={6} xs={6}>
-              <div><a><img width={270} height={125} src={h1} /></a></div>
-              <div className={style.paddingTop}><a><img width={270} height={125}  src={h2} /></a></div>
+            <div><a><img width={270} height={125} src={h1} /></a></div>
+            <div className={style.marginTop}><a><img width={270} height={125} src={h2} /></a></div>
           </Col>
           <Col xl={6} lg={6} md={6} sm={6} xs={6}>
             <Card className={style.myCard}>
-              <p>Card content</p>
-              <p>Card content</p>
-              <p>Card content</p>
+              <h2 style={{ color: 'white' }}>慕辰</h2>
+              <h4 style={{ color: 'white' }}>&emsp;网名：muchen</h4>
+              <h4 style={{ color: 'white' }}>&emsp;职业：嘿嘿</h4>
+              <h4 style={{ color: 'white' }}>&emsp;现居：222222</h4>
+              <h4 style={{ color: 'white' }}>&emsp;email：222222</h4>
+              <List style={{marginTop: 20}} grid={{
+                  gutter: 16, xs: 4, sm: 4, md: 4, lg: 4, xl: 4, xxl: 4,
+                }} 
+                dataSource={data}
+                renderItem={item => (
+                  <List.Item>
+                    <Icon style={{fontSize: 25, color: item.color, alignItems: 'center', alignContent: 'center'}} type={item.type} />
+                  </List.Item>
+                )}
+              />
             </Card>
           </Col>
         </Row>
 
-        <Row gutter={16} className={style.paddingTop}>
+        <Row gutter={16} className={style.marginTop}>
           <Col xl={18} lg={18} md={18} sm={18} xs={18}>
             <Card>
               <Tabs defaultActiveKey="1">
@@ -90,7 +110,7 @@ class Home extends Component{
                       <List.Item
                         extra={<img width={272} alt="logo" src={item.img} />}
                         key={item.title}
-                        actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+                        actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />, <Button type="primary">阅读更多</Button>]}
                       >
                         <List.Item.Meta
                           title={<a href={item.href}>{item.title}</a>}
@@ -116,7 +136,7 @@ class Home extends Component{
                       <List.Item
                         extra={<img width={272} alt="logo" src={iamge2} />}
                         key={item.title}
-                        actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+                        actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />, <Button type="primary">阅读更多</Button>]}
                       >
                         <List.Item.Meta
                           title={<a href={item.href}>{item.title}</a>}
@@ -142,7 +162,7 @@ class Home extends Component{
                       <List.Item
                         extra={<img width={272} alt="logo" src={iamge4} />}
                         key={item.title}
-                        actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
+                        actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />, <Button type="primary">阅读更多</Button>]}
                       >
                         <List.Item.Meta
                           title={<a href={item.href}>{item.title}</a>}
@@ -161,27 +181,27 @@ class Home extends Component{
                 <TabPane tab="最近更新" key="1">Content of Tab Pane 1</TabPane>
               </Tabs>
             </Card>
-            <Card className={style.paddingTop}>
+            <Card className={style.marginTop}>
               <Tabs defaultActiveKey="1">
                 <TabPane tab="点击排行" key="1">Content of Tab Pane 1</TabPane>
               </Tabs>
             </Card>
-            <Card className={style.paddingTop}>
+            <Card className={style.marginTop}>
               <Tabs defaultActiveKey="1">
                 <TabPane tab="站长推荐" key="1">Content of Tab Pane 1</TabPane>
               </Tabs>
             </Card>
-            <Card className={style.paddingTop}>
+            <Card className={style.marginTop}>
               <Tabs defaultActiveKey="1">
                 <TabPane tab="站点信息" key="1">Content of Tab Pane 1</TabPane>
               </Tabs>
             </Card>
           </Col>
         </Row>
-        
+
       </GridContent>
     );
   }
 }
- 
+
 export default Home; 

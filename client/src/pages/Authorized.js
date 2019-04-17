@@ -4,7 +4,7 @@ import pathToRegexp from 'path-to-regexp';
 import { connect } from 'dva';
 import Authorized from '@/utils/Authorized';
 import { getAuthority } from '@/utils/authority';
-import Exception403 from '@/pages/Exception/403';
+import Exception403 from '@/pages/403';
 
 function AuthComponent({ children, location, routerData }) {
   const auth = getAuthority();

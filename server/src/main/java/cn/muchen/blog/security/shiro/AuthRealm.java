@@ -1,4 +1,4 @@
-package cn.muchen.framework.security.shiro;
+package cn.muchen.blog.security.shiro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import cn.muchen.framework.service.inter.xtgl.UserService;
-import cn.muchen.framework.util.Util;
+import cn.muchen.blog.service.inter.xtgl.UserService;
+import cn.muchen.blog.util.Util;
 
 /**
  * 

@@ -229,7 +229,7 @@ public class HttpRequestUtil {
 	/**
 	 * Render request according setting
 	 * 
-	 * @param request
+	 * @param connection
 	 */
 	@SuppressWarnings("unused")
 	private void renderRequest(URLConnection connection) {
