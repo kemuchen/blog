@@ -1,0 +1,65 @@
+-- ----------------------------
+-- Function structure for currval
+-- ----------------------------
+DROP FUNCTION IF EXISTS `currval`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `currval`(seq_name varchar(50)) RETURNS int(11)
+    DETERMINISTIC
+begin
+	declare v_value integer;
+	set v_value = 0;
+	select current_value into v_value
+	  from sys_sequence
+	where name = seq_name;
+	return v_value;
+end
+;;
+delimiter ;
+
+-- ----------------------------
+-- Function structure for nextval
+-- ----------------------------
+DROP FUNCTION IF EXISTS `nextval`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `nextval`(seq_name varchar(50)) RETURNS int(11)
+    DETERMINISTIC
+begin
+    declare v_current_value int;
+    declare v_max_value int;
+    declare v_increment int;
+
+    -- 查询当前值和最大值
+    select current_value, max_value, increment
+      from sys_sequence
+	 where name = seq_name
+      into v_current_value, v_max_value, v_increment;
+
+     if v_current_value + v_increment > v_max_value then
+		update sys_sequence
+		   set current_value = 1
+	     where name = seq_name;
+	 else
+         update sys_sequence
+		    set current_value = current_value + increment
+	      where name = seq_name;
+     end if;
+	return currval(seq_name);
+end
+;;
+delimiter ;
+
+-- ----------------------------
+-- Function structure for setval
+-- ----------------------------
+DROP FUNCTION IF EXISTS `setval`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `setval`(seq_name varchar(50), value integer) RETURNS int(11)
+    DETERMINISTIC
+begin
+	update sys_sequence
+	   set current_value = value
+	 where name = seq_name;
+	return currval(seq_name);
+end
+;;
+delimiter ;

@@ -1,4 +1,4 @@
-@import '~antd/lib/style/themes/default.less';
+@import '~antd/es/style/themes/default.less';
 
 .container {
   display: flex;
@@ -21,6 +21,10 @@
 .content {
   flex: 1;
   padding: 32px 0;
+  background-image: url('../assets/background.jpg');
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: @screen-md-min) {
@@ -32,12 +36,14 @@
   }
 
   .content {
-    padding: 32px 0 24px 0;
+    padding: 32px 0 24px;
   }
 }
 
 .top {
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .header {
@@ -52,6 +58,8 @@
   height: 44px;
   margin-right: 16px;
   vertical-align: top;
+  border-radius: 50%;
+  border: 1px solid #000000;
 }
 
 .title {
@@ -68,4 +76,27 @@
   margin-bottom: 40px;
   color: @text-color-secondary;
   font-size: @font-size-base;
+}
+
+.login {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_left {
+  width: 60%;
+  height: 600px;
+  background-image: url('../assets/background_left.png');
+}
+
+.login_right {
+  width: 40%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6e6ee;
 }

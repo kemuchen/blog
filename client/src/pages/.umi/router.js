@@ -1,210 +1,329 @@
 import React from 'react';
-import { Router as DefaultRouter, Route, Switch } from 'react-router-dom';
+import {
+  Router as DefaultRouter,
+  Route,
+  Switch,
+  StaticRouter,
+} from 'react-router-dom';
 import dynamic from 'umi/dynamic';
-import renderRoutes from 'umi/_renderRoutes';
-import RendererWrapper0 from 'D:/Java/workspace/GitHub/blog/client/src/pages/.umi/LocaleWrapper.jsx'
-import _dvaDynamic from 'dva/dynamic'
+import renderRoutes from 'umi/lib/renderRoutes';
+import history from '@@/history';
+import RendererWrapper0 from 'D:/Program Tools/framework/frameowrk/client/src/pages/.umi/LocaleWrapper.jsx';
+import { routerRedux, dynamic as _dvaDynamic } from 'dva';
 
-let Router = require('dva/router').routerRedux.ConnectedRouter;
+const Router = routerRedux.ConnectedRouter;
 
-let routes = [
+const routes = [
   {
-    "path": "/user",
-    "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "layouts__UserLayout" */'../../layouts/UserLayout'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-    "routes": [
+    path: '/user',
+    component: __IS_BROWSER
+      ? _dvaDynamic({
+          component: () =>
+            import(/* webpackChunkName: "layouts__UserLayout" */ '../../layouts/UserLayout'),
+          LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+            .default,
+        })
+      : require('../../layouts/UserLayout').default,
+    routes: [
       {
-        "path": "/user",
-        "redirect": "/user/login",
-        "exact": true
+        name: 'login',
+        path: '/user/login',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              component: () =>
+                import(/* webpackChunkName: "p__framework__login" */ '../framework/login'),
+              LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                .default,
+            })
+          : require('../framework/login').default,
+        exact: true,
       },
       {
-        "path": "/user/login",
-        "name": "login",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/Java/workspace/GitHub/blog/client/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__User__Login" */'../User/Login'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
+        component: () =>
+          React.createElement(
+            require('D:/Program Tools/framework/frameowrk/client/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+              .default,
+            { pagesPath: 'src/pages', hasRoutesInConfig: true },
+          ),
       },
-      {
-        "path": "/user/register",
-        "name": "register",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/Java/workspace/GitHub/blog/client/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__User__Register" */'../User/Register'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "path": "/user/register-result",
-        "name": "register.result",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__User__models__register.js' */'D:/Java/workspace/GitHub/blog/client/src/pages/User/models/register.js').then(m => { return { namespace: 'register',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__User__RegisterResult" */'../User/RegisterResult'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__404" */'../404'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "component": () => React.createElement(require('D:/Java/workspace/GitHub/blog/client/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
-      }
-    ]
+    ],
   },
   {
-    "path": "/",
-    "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "layouts__BasicLayout" */'../../layouts/BasicLayout'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-    "Routes": [require('../Authorized').default],
-    "routes": [
+    path: '/',
+    component: __IS_BROWSER
+      ? _dvaDynamic({
+          component: () =>
+            import(/* webpackChunkName: "layouts__SecurityLayout" */ '../../layouts/SecurityLayout'),
+          LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+            .default,
+        })
+      : require('../../layouts/SecurityLayout').default,
+    routes: [
       {
-        "path": "/",
-        "redirect": "/home",
-        "exact": true
+        path: '/',
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              component: () =>
+                import(/* webpackChunkName: "layouts__BasicLayout" */ '../../layouts/BasicLayout'),
+              LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                .default,
+            })
+          : require('../../layouts/BasicLayout').default,
+        authority: ['admin', 'user'],
+        routes: [
+          {
+            path: '/',
+            redirect: '/home',
+            exact: true,
+          },
+          {
+            path: '/home',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  app: require('@tmp/dva').getApp(),
+                  models: () => [
+                    import(/* webpackChunkName: 'p__Center__model.js' */ 'D:/Program Tools/framework/frameowrk/client/src/pages/Center/model.js').then(
+                      m => {
+                        return { namespace: 'model', ...m.default };
+                      },
+                    ),
+                  ],
+                  component: () =>
+                    import(/* webpackChunkName: "p__Center" */ '../Center'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../Center').default,
+            exact: true,
+          },
+          {
+            path: '/system/user',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "p__system__user" */ '../system/user'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../system/user').default,
+            exact: true,
+          },
+          {
+            path: '/component/draggable',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  app: require('@tmp/dva').getApp(),
+                  models: () => [
+                    import(/* webpackChunkName: 'p__component__DraggableTag__model.js' */ 'D:/Program Tools/framework/frameowrk/client/src/pages/component/DraggableTag/model.js').then(
+                      m => {
+                        return { namespace: 'model', ...m.default };
+                      },
+                    ),
+                  ],
+                  component: () =>
+                    import(/* webpackChunkName: "p__component__DraggableTag" */ '../component/DraggableTag'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../component/DraggableTag').default,
+            exact: true,
+          },
+          {
+            path: '/component/supertree',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "p__component__SuperTree" */ '../component/SuperTree'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../component/SuperTree').default,
+            exact: true,
+          },
+          {
+            path: '/component/rightclicktree',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "p__component__RightClickTree" */ '../component/RightClickTree'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../component/RightClickTree').default,
+            exact: true,
+          },
+          {
+            path: '/component/searchtree',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "p__component__SearchTree" */ '../component/SearchTree'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../component/SearchTree').default,
+            exact: true,
+          },
+          {
+            path: '/component/select',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  app: require('@tmp/dva').getApp(),
+                  models: () => [
+                    import(/* webpackChunkName: 'p__component__Select__model.js' */ 'D:/Program Tools/framework/frameowrk/client/src/pages/component/Select/model.js').then(
+                      m => {
+                        return { namespace: 'model', ...m.default };
+                      },
+                    ),
+                  ],
+                  component: () =>
+                    import(/* webpackChunkName: "p__component__Select" */ '../component/Select'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../component/Select').default,
+            exact: true,
+          },
+          {
+            path: '/component/brafteditor',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "p__component__BraftEditor" */ '../component/BraftEditor'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../component/BraftEditor').default,
+            exact: true,
+          },
+          {
+            name: '个人中心',
+            icon: 'smile',
+            path: '/center',
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  app: require('@tmp/dva').getApp(),
+                  models: () => [
+                    import(/* webpackChunkName: 'p__Center__model.js' */ 'D:/Program Tools/framework/frameowrk/client/src/pages/Center/model.js').then(
+                      m => {
+                        return { namespace: 'model', ...m.default };
+                      },
+                    ),
+                  ],
+                  component: () =>
+                    import(/* webpackChunkName: "p__Center" */ '../Center'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../Center').default,
+            exact: true,
+          },
+          {
+            component: __IS_BROWSER
+              ? _dvaDynamic({
+                  component: () =>
+                    import(/* webpackChunkName: "p__framework__404" */ '../framework/404'),
+                  LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                    .default,
+                })
+              : require('../framework/404').default,
+            exact: true,
+          },
+          {
+            component: () =>
+              React.createElement(
+                require('D:/Program Tools/framework/frameowrk/client/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+                  .default,
+                { pagesPath: 'src/pages', hasRoutesInConfig: true },
+              ),
+          },
+        ],
       },
       {
-        "path": "/home",
-        "name": "home",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__Home__models__home.js' */'D:/Java/workspace/GitHub/blog/client/src/pages/Home/models/home.js').then(m => { return { namespace: 'home',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__Home__Home" */'../Home/Home'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
+        component: __IS_BROWSER
+          ? _dvaDynamic({
+              component: () =>
+                import(/* webpackChunkName: "p__framework__404" */ '../framework/404'),
+              LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+                .default,
+            })
+          : require('../framework/404').default,
+        exact: true,
       },
       {
-        "path": "/blog",
-        "name": "blog",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__BlogDiary__models__blogDiary.js' */'D:/Java/workspace/GitHub/blog/client/src/pages/BlogDiary/models/blogDiary.js').then(m => { return { namespace: 'blogDiary',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__BlogDiary__BlogDiary" */'../BlogDiary/BlogDiary'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
+        component: () =>
+          React.createElement(
+            require('D:/Program Tools/framework/frameowrk/client/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+              .default,
+            { pagesPath: 'src/pages', hasRoutesInConfig: true },
+          ),
       },
-      {
-        "path": "/read",
-        "name": "read",
-        "component": _dvaDynamic({
-  app: window.g_app,
-models: () => [
-  import(/* webpackChunkName: 'p__Read__models__read.js' */'D:/Java/workspace/GitHub/blog/client/src/pages/Read/models/read.js').then(m => { return { namespace: 'read',...m.default}})
-],
-  component: () => import(/* webpackChunkName: "p__Read__Read" */'../Read/Read'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "name": "about",
-        "path": "/about",
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__About__About" */'../About/About'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "name": "timeline",
-        "path": "/timeline",
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__TimeAxle__TimeAxle" */'../TimeAxle/TimeAxle'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "name": "guid",
-        "path": "/guid",
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__Guid__Guid" */'../Guid/Guid'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "name": "message",
-        "path": "/message",
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__Message__Message" */'../Message/Message'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "component": _dvaDynamic({
-  
-  component: () => import(/* webpackChunkName: "p__404" */'../404'),
-  LoadingComponent: require('D:/Java/workspace/GitHub/blog/client/src/components/PageLoading/index').default,
-}),
-        "exact": true
-      },
-      {
-        "component": () => React.createElement(require('D:/Java/workspace/GitHub/blog/client/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
-      }
-    ]
+    ],
   },
   {
-    "component": () => React.createElement(require('D:/Java/workspace/GitHub/blog/client/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
-  }
+    component: __IS_BROWSER
+      ? _dvaDynamic({
+          component: () =>
+            import(/* webpackChunkName: "p__framework__404" */ '../framework/404'),
+          LoadingComponent: require('D:/Program Tools/framework/frameowrk/client/src/components/framework/PageLoading/index')
+            .default,
+        })
+      : require('../framework/404').default,
+    exact: true,
+  },
+  {
+    component: () =>
+      React.createElement(
+        require('D:/Program Tools/framework/frameowrk/client/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+          .default,
+        { pagesPath: 'src/pages', hasRoutesInConfig: true },
+      ),
+  },
 ];
 window.g_routes = routes;
-window.g_plugins.applyForEach('patchRoutes', { initialValue: routes });
+const plugins = require('umi/_runtimePlugin');
+plugins.applyForEach('patchRoutes', { initialValue: routes });
 
-// route change handler
-function routeChangeHandler(location, action) {
-  window.g_plugins.applyForEach('onRouteChange', {
-    initialValue: {
-      routes,
-      location,
-      action,
-    },
-  });
-}
-window.g_history.listen(routeChangeHandler);
-routeChangeHandler(window.g_history.location);
+export { routes };
 
-export default function RouterWrapper() {
-  return (
-<RendererWrapper0>
-          <Router history={window.g_history}>
-      { renderRoutes(routes, {}) }
-    </Router>
-        </RendererWrapper0>
-  );
+export default class RouterWrapper extends React.Component {
+  unListen() {}
+
+  constructor(props) {
+    super(props);
+
+    // route change handler
+    function routeChangeHandler(location, action) {
+      plugins.applyForEach('onRouteChange', {
+        initialValue: {
+          routes,
+          location,
+          action,
+        },
+      });
+    }
+    this.unListen = history.listen(routeChangeHandler);
+    // dva 中 history.listen 会初始执行一次
+    // 这里排除掉 dva 的场景，可以避免 onRouteChange 在启用 dva 后的初始加载时被多执行一次
+    const isDva =
+      history.listen
+        .toString()
+        .indexOf('callback(history.location, history.action)') > -1;
+    if (!isDva) {
+      routeChangeHandler(history.location);
+    }
+  }
+
+  componentWillUnmount() {
+    this.unListen();
+  }
+
+  render() {
+    const props = this.props || {};
+    return (
+      <RendererWrapper0>
+        <Router history={history}>{renderRoutes(routes, props)}</Router>
+      </RendererWrapper0>
+    );
+  }
 }
